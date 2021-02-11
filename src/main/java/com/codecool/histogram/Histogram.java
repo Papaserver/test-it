@@ -1,6 +1,8 @@
 package com.codecool.histogram;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class to generate diagram of word distribution in text based on their length.
@@ -83,8 +85,23 @@ public class Histogram {
      * The following formula applied to every ranges:
      *      `V' = (V - min) * 100 / (max - min)`
      */
-    public void normalizeValues() {
-        // TODO: Implement normalization method
+    public void normalizeValues() throws IOException {
+        int minRange = getMin();
+        int maxRange = getMax();
+        Set<Range> range;
+        range = histogram.entrySet().stream().map(Map.Entry::getKey).collect(Collectors.toSet());
+        range.stream()
+                .forEach(r -> histogram.replace(r, (histogram.get(r) - minRange) * 100 / (maxRange - minRange)));
+    }
+
+
+    public int getMin() {
+        return histogram.values().stream().mapToInt(v -> v).min().orElse(0);
+
+    }
+
+    public int getMax() {
+        return histogram.values().stream().mapToInt(v -> v).max().orElse(0);
     }
 
     /**

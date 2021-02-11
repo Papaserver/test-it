@@ -7,7 +7,7 @@ import java.util.List;
 public class App {
     public static void main(String[] args) throws IOException {
 
-        TextReader reader = new TextReader("src/main/resources/text.txt");
+        TextReader reader = new TextReader("src/test/resources/text.txt");
         String chapter;
         chapter = reader.read();
 
@@ -29,6 +29,9 @@ public class App {
         ranges = Arrays.asList(new Range(0, 1), new Range(2, 3), new Range(4, 6), new Range(7, 10));
         histogram.generate(chapter, ranges);
         histogram.normalizeValues();
+        System.out.println("min:"+ histogram.getMin());
+
+        System.out.println("max:"+ histogram.getMax());
         System.out.println(histogram.toString());
     }
 }

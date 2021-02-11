@@ -23,6 +23,14 @@ public class Range {
         this.to = to;
     }
 
+    public int getFrom() {
+        return from;
+    }
+
+    public int getTo() {
+        return to;
+    }
+
     /**
      * Returns that the given word belongs to the particular range or not.
      * @param word text to investigate
