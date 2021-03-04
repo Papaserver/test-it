@@ -63,7 +63,6 @@ public class Histogram {
         if ("".equals(text)) {
             return histogram;
         }
-        // remove punctuation and split by whitespace
         String[] words = text.replaceAll("[^a-zA-Z \\r?\\n]", "").split("\\s+");
 
         for (String word : words) {
@@ -96,11 +95,12 @@ public class Histogram {
 
 
     public int getMin() {
-        return histogram.values().stream().mapToInt(v -> v).min().orElse(0);
 
+        return histogram.values().stream().mapToInt(v -> v).min().orElse(0);
     }
 
     public int getMax() {
+
         return histogram.values().stream().mapToInt(v -> v).max().orElse(0);
     }
 
